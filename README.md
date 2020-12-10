@@ -15,4 +15,4 @@ Using JSON country data and the Vaisala raw lightning data, I calculated the lig
 Once I calculated the land-only lightning density per country, I saved the data in a csv dataframe so it could easily be used for additional analysis in the future. (It takes a lot of time to process all of that raw lightning data!)
 
 4. Interactive global density map (HTML file)
-The final result, using Plotly and a world country JSON file to plot 2019 lightning density values per country. The map has zoom in/out, pan, and hover capabilities. The map can be viewed online here: https://janelane1013.github.io/ClimateAi/ 
+The final result, using Plotly and a world country JSON file to plot 2019 lightning density values per country. The map has zoom in/out, pan, and hover capabilities. The map can be viewed online here: https://janelane1013.github.io/ClimateAi_Sample/
