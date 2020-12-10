@@ -9,7 +9,7 @@ Included is a small sample of the raw lightning data, my Python code, a csv file
 I've included a (very small) sample of the global lightning data used to calculate the lightning density per country. Prior to analysis, I collected this data via command line using Vaisala's in-house UNIX tools created to process proprietary lightning data. I organized the data by month and zipped the files prior to running my code. Format: Date, Time (UTC), Latitude, Longitude, Peak current with polarity (kA), Intracloud/cloud-to-ground indicator.
 
 2. Python code: 
-Using JSON country data and the Vaisala raw lightning data, I calculated the lightning density per country (Included code and map are for all of 2019). I counted lightning occurring over land only for this map, excluding ocean activity for simplicity. The code makes use of the pandas and Plotly libraries to make an interactive web-based map.
+Using JSON country data and the Vaisala raw lightning data, I calculated the lightning density per country (Included code and map are for all of 2019). I counted lightning occurring over land only for this map, excluding ocean activity. The code makes use of the pandas and Plotly libraries to make an interactive web-based map.
 
 3. Data analysis results (CSV file): 
 Once I calculated the land-only lightning density per country, I saved the data in a csv dataframe so it could easily be used for additional analysis in the future. (It takes a lot of time to process all of that raw lightning data!)
