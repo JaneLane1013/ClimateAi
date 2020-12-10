@@ -22,7 +22,7 @@ df.iso_a3 = [i['properties']['iso_a3'] for i in country_json.features]
 df.name = [i['properties']['name'] for i in country_json.features]
 df.area_sqkm = [area(i['geometry'])/1000000 for i in country_json.features]  # m2 to km2
 
-# load dissolved countries json (for clipping to land-only)
+# load dissolved countries json (prepped in QGIS; for clipping to land-only)
 dissolvedCountry_json = pd.read_json('DissolvedCountries.geojson')
 poly_countries = shape(dissolvedCountry_json['features'][0]['geometry'])
 land_only_poly = shapelyprep.prep(poly_countries)
@@ -51,7 +51,7 @@ for mth in range(startMth, endMth + 1):
     # add lightning counts to iso,area df
     df = df.join(countryCounts_df.set_index('iso_a2'), on='iso_a2')
 
-# sum monthly counts and calculate density
+# sum monthly counts and calculate density, save df to csv
 df['density'] = ''
 count_cols = [col for col in df.columns if 'counts' in col]
 df.density = df[count_cols].sum(axis=1) / df.area_sqkm
@@ -71,7 +71,7 @@ df.loc[df.density >= 2] = df.loc[df.density >= 2].round(0)
 fig = px.choropleth(df, geojson=countries, locations='iso_a3', color='density', featureidkey='id',
                     locationmode='geojson-id',
                     color_continuous_scale='matter',
-                    range_color=(1, 100),  # max(df.density)),
+                    range_color=(1, max(df.density)),
                     labels={'density': 'Average density<br>strokes / km<sup>2</sup> '},
                     hover_name='name', hover_data={'iso_a3': False})
 
@@ -83,6 +83,7 @@ fig.update_layout(coloraxis_colorbar=dict(
     tickvals=[0, 20, 40, 60, 80, 100],
     ticktext=['0', '20', '40', '60', '80', '>100'],
 ))
+
 config = dict({'scrollZoom': True, 'responsive': True,
                'displaylogo': False, 'modeBarButtonsToRemove': ['toImage', 'select2d', 'lasso2d']})
 
