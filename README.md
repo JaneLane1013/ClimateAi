@@ -1,4 +1,4 @@
-# ClimateAi
+# ClimateAi Sample
 Project sample for Data Scientist position
 
 This project represents an interactive web-based global lightning density map by country.
